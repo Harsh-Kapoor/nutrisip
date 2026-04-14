@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriSip | Modern Sattu Superfood</title>
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .cart-drawer { transition: transform 0.3s ease-in-out; }
+        .cart-drawer.closed { transform: translateX(100%); }
+        .cart-drawer.open { transform: translateX(0); }
+    </style>
+</head>
+<body class="bg-[#FDFCF9] text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <div class="text-2xl font-black tracking-tighter text-[#4A6741] cursor-pointer" onclick="showSection('home')">
+                NUTRISIP<span class="text-orange-500">.</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-10 font-medium">
+                <button onclick="showSection('home')" class="nav-btn hover:text-orange-600 transition" data-view="home">Home</button>
+                <button onclick="showSection('about')" class="nav-btn hover:text-orange-600 transition" data-view="about">Our Story</button>
+                <button onclick="showSection('facts')" class="nav-btn hover:text-orange-600 transition" data-view="facts">Nutri-Facts</button>
+            </div>
+
+            <button onclick="toggleCart(true)" class="relative p-2 hover:bg-orange-50 rounded-full transition">
+                <i class="fa-solid fa-shopping-cart text-xl"></i>
+                <span id="cart-count-badge" class="hidden absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+        
+        <!-- HOME SECTION -->
+        <div id="section-home" class="view-section">
+            <!-- Hero -->
+            <section class="relative overflow-hidden pt-16 pb-24 px-6">
+                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold mb-6">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>100% CLEAN LABEL</span>
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-slate-900">
+                            The Ancient <br />
+                            <span class="text-[#4A6741]">Super-Drink</span> <br />
+                            Redefined.
+                        </h1>
+                        <p class="text-lg text-slate-600 mb-8 max-w-lg">
+                            High-protein sattu premixes designed for the modern hustle. No refined sugar, no preservatives. Just pure, earthy nutrition for your family.
+                        </p>
+                        <div class="flex space-x-4">
+                            <button onclick="document.getElementById('products-anchor').scrollIntoView()" class="bg-[#4A6741] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#3d5535] transition shadow-lg">
+                                Shop All Flavors
+                            </button>
+                            <button class="bg-white border-2 border-slate-200 px-8 py-4 rounded-xl font-bold hover:border-orange-300 transition">
+                                Watch Video
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-square bg-gradient-to-br from-orange-100 to-green-100 rounded-[3rem] flex items-center justify-center border-4 border-white shadow-2xl relative overflow-hidden">
+                            <div class="text-center p-12">
+                                <p class="text-slate-400 font-medium">[ PLACE HERO IMAGE OF PACKAGING HERE ]</p>
+                                <p class="text-xs text-slate-400 mt-2 italic">Suggested: Trio of packets with fresh ingredients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products -->
+            <section id="products-anchor" class="py-24 bg-white px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold mb-4">Pick Your Power</h2>
+                        <p class="text-slate-500">Naturally sourced, masterfully blended.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8" id="product-grid">
+                        <!-- Product Cards injected by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bundle -->
+            <section class="py-12 px-6">
+                <div class="max-w-7xl mx-auto bg-[#2C3E50] rounded-[3rem] p-12 text-white overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <i class="fa-solid fa-bolt text-[200px]"></i>
+                    </div>
+                    <div class="md:flex items-center justify-between relative z-10">
+                        <div class="mb-8 md:mb-0 max-w-md">
+                            <span class="bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-black mb-4 inline-block">BEST VALUE</span>
+                            <h2 class="text-4xl font-bold mb-4">Family Variety Bundle</h2>
+                            <p class="text-slate-300 mb-6">The complete NutriSip experience. Pack of 6 (2 per flavor). Stocks your pantry for the whole week.</p>
+                            <div class="flex items-baseline space-x-3 mb-8">
+                                <span class="text-4xl font-black text-orange-400">₹1099</span>
+                                <span class="text-xl text-slate-400 line-through">₹1294</span>
+                            </div>
+                            <button onclick="addToCart('bundle-6', 'Family Variety Bundle', 1099, 'Pack of 6 Combo')" class="bg-white text-[#2C3E50] px-10 py-4 rounded-xl font-bold hover:bg-orange-50 transition">
+                                Add Bundle to Cart
+                            </button>
+                        </div>
+                        <div class="flex-1 max-w-sm mx-auto">
+                            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
+                               <div class="h-48 flex items-center justify-center border-2 border-dashed border-white/30 rounded-lg mb-4">
+                                [ BUNDLE PACK IMAGE ]
+                               </div>
+                               <div class="flex justify-center space-x-2">
+                                 <div class="w-8 h-8 rounded-full bg-[#E8F3E8]"></div>
+                                 <div class="w-8 h-8 rounded-full bg-[#FFF2E6]"></div>
+                                 <div class="w-8 h-8 rounded-full bg-[#F4ECE4]"></div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <div id="section-about" class="view-section hidden">
+            <section class="py-24 px-6 max-w-4xl mx-auto">
+                <h2 class="text-4xl font-black mb-8 text-[#4A6741]">Our Heritage, Your Health.</h2>
+                <div class="space-y-6 text-lg text-slate-600 leading-relaxed">
+                    <p>Sattu has been the backbone of Indian endurance for centuries. Known as the "Poor Man's Protein," it was the secret fuel of farmers and warriors alike.</p>
+                    <div class="bg-orange-50 p-8 rounded-3xl border border-orange-100 my-10 text-slate-800">
+                        <h4 class="font-bold text-orange-800 mb-2">The NutriSip Promise</h4>
+                        <p>We realized that while the world was chasing synthetic protein shakes, our own traditional superfood was being forgotten. We brought it back with a 21st-century flavor profile.</p>
+                    </div>
+                    <p><b>NutriSip</b> is a bridge between traditional wisdom and fast-paced modern lives. From tangy Jaljeera to chocolatey Cocoa Jaggery, we have a sip for everyone.</p>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-16 text-center">
+                    <div><div class="font-black text-3xl text-[#4A6741]">100%</div><div class="text-sm">Natural</div></div>
+                    <div><div class="font-black text-3xl text-[#4A6741]">20g</div><div class="text-sm">Protein/100g</div></div>
+                    <div><div class="font-black text-3xl text-[#4A6741]">0%</div><div class="text-sm">Refined Sugar</div></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FACTS SECTION -->
+        <div id="section-facts" class="view-section hidden">
+            <section class="py-24 px-6 max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold">Why Sattu?</h2>
+                    <p class="text-slate-500 mt-2 text-lg">The science behind the ancient sip.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
+                        <i class="fa-solid fa-bolt text-3xl text-orange-500 mb-4"></i>
+                        <h4 class="font-bold mb-2 text-xl">Instant Energy</h4>
+                        <p class="text-sm text-slate-500">Low glycemic index ensures sustained energy release without the crash.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
+                        <i class="fa-solid fa-shield-halved text-3xl text-orange-500 mb-4"></i>
+                        <h4 class="font-bold mb-2 text-xl">Gut Health</h4>
+                        <p class="text-sm text-slate-500">Rich in insoluble fiber, acting as a natural cooling agent and digestive aid.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
+                        <i class="fa-solid fa-leaf text-3xl text-orange-500 mb-4"></i>
+                        <h4 class="font-bold mb-2 text-xl">Iron Rich</h4>
+                        <p class="text-sm text-slate-500">Naturally high in iron and manganese, crucial for growing children.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
+                        <i class="fa-solid fa-star text-3xl text-orange-500 mb-4"></i>
+                        <h4 class="font-bold mb-2 text-xl">Skin & Hair</h4>
+                        <p class="text-sm text-slate-500">The protein and minerals help maintain healthy glow and hair strength.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-20 px-6 mt-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="text-2xl font-black mb-6 uppercase">NUTRISIP<span class="text-orange-500">.</span></div>
+                <p class="text-slate-400 max-w-sm mb-6 text-sm">We are reimagining Indian superfoods for the global kitchen. Sourced directly from farmers, made with love for your family.</p>
+                <div class="flex space-x-4">
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition cursor-pointer">IG</div>
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition cursor-pointer">FB</div>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Explore</h4>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li><button onclick="showSection('home')">Shop All</button></li>
+                    <li><button onclick="showSection('about')">Our Journey</button></li>
+                    <li><button onclick="showSection('facts')">Health Benefits</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Support</h4>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li class="hover:text-white cursor-pointer">Shipping Policy</li>
+                    <li class="hover:text-white cursor-pointer">Contact Us</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm hidden" onclick="toggleCart(false)">
+        <div id="cart-drawer" class="cart-drawer closed absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+            <div class="p-6 border-b flex items-center justify-between">
+                <h2 class="text-xl font-bold flex items-center">
+                    <i class="fa-solid fa-shopping-cart mr-3"></i> Your Cart
+                </h2>
+                <button onclick="toggleCart(false)" class="p-2 hover:bg-slate-100 rounded-full transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-6">
+                <!-- Cart items will be injected here -->
+            </div>
+
+            <div id="cart-footer" class="p-6 border-t bg-slate-50 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-slate-500 font-medium">Subtotal</span>
+                    <span class="text-2xl font-black">₹<span id="cart-total-value">0</span></span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-[#4A6741] text-white py-4 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-[#3d5535] transition shadow-lg">
+                    <span>Checkout Now</span>
+                    <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
+                </button>
+                <div class="mt-4 flex justify-center space-x-4 opacity-40">
+                    <i class="fa-brands fa-cc-visa text-2xl"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl"></i>
+                    <i class="fa-solid fa-building-columns text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const flavors = [
+            { id: 'jaljeera', name: 'Zesty Jaljeera', tagline: 'The Digestive Refresher', price: 199, color: 'bg-[#E8F3E8]', text: 'text-green-800', desc: 'Authentic roasted gram blended with cumin, black salt, and tangy mango.' },
+            { id: 'peri-peri', name: 'Smoky Peri Peri', tagline: 'The Savory Superfood', price: 199, color: 'bg-[#FFF2E6]', text: 'text-orange-800', desc: 'A bold, spicy twist on traditional sattu. High protein meets gourmet spice.' },
+            { id: 'cocoa-jaggery', name: 'Cocoa Jaggery', tagline: 'The Kids\' Favorite', price: 249, color: 'bg-[#F4ECE4]', text: 'text-amber-900', desc: 'Premium cocoa powder paired with organic jaggery. No refined sugar.' }
+        ];
+
+        let cart = [];
+
+        // Initialize Products
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = flavors.map(f => `
+                <div class="group relative">
+                    <div class="${f.color} rounded-[2rem] p-8 transition-transform duration-500 hover:-translate-y-4 h-full flex flex-col">
+                        <div class="aspect-square mb-6 bg-white/50 rounded-2xl flex items-center justify-center overflow-hidden border border-white/40">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">[ ${f.name} IMAGE ]</p>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-1">${f.name}</h3>
+                        <p class="font-medium mb-4 ${f.text}">${f.tagline}</p>
+                        <p class="text-sm text-slate-600 mb-6 flex-grow">${f.desc}</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black">₹${f.price}</span>
+                            <button onclick="addToCart('${f.id}', '${f.name}', ${f.price}, '${f.tagline}')" class="bg-white p-3 rounded-full shadow-md hover:bg-slate-900 hover:text-white transition">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Navigation Logic
+        function showSection(viewId) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('section-' + viewId).classList.remove('hidden');
+            
+            // Highlight Nav
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.dataset.view === viewId) btn.classList.add('text-orange-600');
+                else btn.classList.remove('text-orange-600');
+            });
+            window.scrollTo(0, 0);
+        }
+
+        // Cart Logic
+        function toggleCart(open) {
+            const overlay = document.getElementById('cart-overlay');
+            const drawer = document.getElementById('cart-drawer');
+            if(open) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    drawer.classList.remove('closed');
+                    drawer.classList.add('open');
+                }, 10);
+            } else {
+                drawer.classList.remove('open');
+                drawer.classList.add('closed');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        function addToCart(id, name, price, tagline) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ id, name, price, tagline, qty: 1 });
+            }
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const itemsContainer = document.getElementById('cart-items');
+            const footer = document.getElementById('cart-footer');
+            const totalVal = document.getElementById('cart-total-value');
+            const badge = document.getElementById('cart-count-badge');
+            
+            const totalQty = cart.reduce((a, b) => a + b.qty, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="text-center py-20">
+                        <p class="text-slate-400 mb-4 text-lg">Your cart is empty.</p>
+                        <button onclick="toggleCart(false)" class="text-orange-600 font-bold hover:underline">Start Shopping</button>
+                    </div>
+                `;
+                footer.classList.add('hidden');
+                badge.classList.add('hidden');
+            } else {
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="flex space-x-4 animate-fade-in">
+                        <div class="w-16 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-[8px] text-slate-400 font-bold border">PACK</div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between font-bold text-sm">
+                                <span>${item.name}</span>
+                                <span>₹${item.price * item.qty}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-2">${item.tagline}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center border rounded-lg overflow-hidden bg-white">
+                                    <button onclick="updateQty('${item.id}', -1)" class="px-2 py-1 hover:bg-slate-50 text-xs"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="px-3 text-sm font-medium border-x">${item.qty}</span>
+                                    <button onclick="updateQty('${item.id}', 1)" class="px-2 py-1 hover:bg-slate-50 text-xs"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                                <button onclick="updateQty('${item.id}', -999)" class="text-xs text-red-500 hover:underline">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                footer.classList.remove('hidden');
+                totalVal.innerText = totalAmount;
+                badge.innerText = totalQty;
+                badge.classList.remove('hidden');
+            }
+        }
+
+        function checkout() {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            alert(`NutriSip: Initiating Payment for ₹${totalAmount}\n\nThis would normally open the Razorpay or Stripe Gateway.`);
+        }
+
+        // Run on load
+        window.onload = () => {
+            renderProducts();
+            showSection('home');
+        };
+    </script>
+</body>
+</html>
