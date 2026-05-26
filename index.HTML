@@ -3,411 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriSip | Clean Label Superfoods</title>
-    <!-- Tailwind CSS for Styling -->
+    <title>SipSil | Modern Nutrition, Ancient Wisdom</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .cart-drawer { transition: transform 0.3s ease-in-out; }
-        .cart-drawer.closed { transform: translateX(100%); }
-        .cart-drawer.open { transform: translateX(0); }
-        .category-pill.active { background-color: #4A6741; color: white; }
+        body { font-family: 'Outfit', sans-serif; background-color: #FFFDF7; color: #1a1a1a; }
+        .gradient-text { background: linear-gradient(90deg, #4A6741, #F97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15); }
     </style>
 </head>
-<body class="bg-[#FDFCF9] text-slate-800">
+<body>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 h-20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-            <div class="text-2xl font-black tracking-tighter text-[#4A6741] cursor-pointer" onclick="showSection('home')">
-                NUTRISIP<span class="text-orange-500">.</span>
+    <nav class="sticky top-0 z-50 bg-[#FFFDF7]/90 backdrop-blur-md border-b border-orange-100 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="cursor-pointer">
+                <div class="text-3xl font-black tracking-tighter text-[#4A6741]">SIPSIL</div>
+                <div class="text-[10px] font-bold tracking-[0.2em] text-orange-600 uppercase">by NutriShip</div>
             </div>
-            
-            <div class="hidden md:flex space-x-10 font-medium text-sm uppercase tracking-wide">
-                <button onclick="showSection('home')" class="nav-btn hover:text-orange-600 transition" data-view="home">Shop</button>
-                <button onclick="showSection('about')" class="nav-btn hover:text-orange-600 transition" data-view="about">Our Philosophy</button>
-                <button onclick="showSection('standards')" class="nav-btn hover:text-orange-600 transition" data-view="standards">Quality Standards</button>
+            <div class="flex space-x-8 font-bold text-sm uppercase tracking-widest">
+                <a href="#shop" class="hover:text-orange-600 transition">Shop</a>
+                <a href="#about" class="hover:text-orange-600 transition">Our Story</a>
             </div>
-
-            <button onclick="toggleCart(true)" class="relative p-2 hover:bg-orange-50 rounded-full transition">
-                <i class="fa-solid fa-shopping-basket text-xl"></i>
-                <span id="cart-count-badge" class="hidden absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
-            </button>
         </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <main id="main-content">
-        
-        <!-- HOME / SHOP SECTION -->
-        <div id="section-home" class="view-section">
-            <!-- Hero -->
-            <section class="relative overflow-hidden pt-16 pb-20 px-6">
-                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold mb-6 tracking-widest uppercase">
-                            <i class="fa-solid fa-shield-heart"></i>
-                            <span>Zero Preservatives • Zero Refined Sugar</span>
-                        </div>
-                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-slate-900">
-                            Modern Nutrition, <br />
-                            <span class="text-[#4A6741]">Ancient Wisdom.</span>
-                        </h1>
-                        <p class="text-lg text-slate-600 mb-8 max-w-lg">
-                            We're reimagining traditional superfoods into cleaner, healthier alternatives for the whole family. High-protein, fiber-rich, and 100% transparent.
-                        </p>
-                        <div class="flex space-x-4">
-                            <button onclick="document.getElementById('products-anchor').scrollIntoView()" class="bg-[#4A6741] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#3d5535] transition shadow-lg">
-                                Explore Products
-                            </button>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="aspect-[4/3] bg-gradient-to-br from-orange-50 to-green-50 rounded-[3rem] flex items-center justify-center border border-slate-100 shadow-xl relative overflow-hidden">
-                            <div class="text-center p-12">
-                                <p class="text-slate-400 font-medium">IMAGE: LIFESTYLE SHOT OF HEALTHY FAMILY</p>
-                                <p class="text-xs text-slate-400 mt-2 italic">A clean, bright image of kids and adults enjoying NutriSip</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Product Explorer -->
-            <section id="products-anchor" class="py-20 bg-white px-6">
-                <div class="max-w-7xl mx-auto">
-                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-                        <div>
-                            <h2 class="text-4xl font-bold mb-2">The Collection</h2>
-                            <p class="text-slate-500">Every product follows our "Clean Label" promise.</p>
-                        </div>
-                        <!-- CATEGORY FILTER (Scalable for future) -->
-                        <div class="flex space-x-2 overflow-x-auto pb-2">
-                            <button onclick="filterProducts('all')" class="category-pill active whitespace-nowrap px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition">All Superfoods</button>
-                            <button onclick="filterProducts('sattu')" class="category-pill whitespace-nowrap px-6 py-2 rounded-full border border-slate-200 text-sm font-bold transition">Sattu Premixes</button>
-                            <button class="whitespace-nowrap px-6 py-2 rounded-full border border-slate-100 text-slate-300 text-sm font-bold cursor-not-allowed">Coming Soon: Millets</button>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8" id="product-grid">
-                        <!-- Product Cards injected by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Bundle (Optimized for Multi-Product Future) -->
-            <section class="py-12 px-6">
-                <div class="max-w-7xl mx-auto bg-[#2C3E50] rounded-[3rem] p-12 text-white overflow-hidden relative">
-                    <div class="absolute -bottom-10 -right-10 p-8 opacity-10">
-                        <i class="fa-solid fa-seedling text-[300px]"></i>
-                    </div>
-                    <div class="md:flex items-center justify-between relative z-10">
-                        <div class="mb-8 md:mb-0 max-w-md">
-                            <span class="bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-black mb-4 inline-block">MOST POPULAR</span>
-                            <h2 class="text-4xl font-bold mb-4">Variety Discovery Pack</h2>
-                            <p class="text-slate-300 mb-6">Can't decide? Get our mixed bundle of 6. A perfect introduction to clean-label snacking for your family.</p>
-                            <div class="flex items-baseline space-x-3 mb-8">
-                                <span class="text-4xl font-black text-orange-400">₹1099</span>
-                                <span class="text-xl text-slate-400 line-through">₹1294</span>
-                            </div>
-                            <button onclick="addToCart('bundle-6', 'Variety Discovery Pack', 1099, 'Pack of 6 Mixed')" class="bg-white text-[#2C3E50] px-10 py-4 rounded-xl font-bold hover:bg-orange-50 transition">
-                                Add Bundle to Cart
-                            </button>
-                        </div>
-                        <div class="flex-1 max-w-sm mx-auto">
-                            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
-                               <div class="h-48 flex items-center justify-center border-2 border-dashed border-white/30 rounded-lg mb-4">
-                                [ BUNDLE IMAGE ]
-                               </div>
-                               <p class="text-xs uppercase tracking-widest font-bold text-slate-400">2 per flavor • 6 total</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <!-- Hero -->
+    <header class="py-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-black leading-[1.1] mb-8 tracking-tight">
+                Reviving Ancient Roots,<br />
+                <span class="gradient-text">Recharging Your Modern Hustle.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 mb-12 max-w-2xl mx-auto font-medium">
+                Experience the power of traditional Indian superfoods, meticulously crafted for the pace of today's life.
+            </p>
         </div>
+    </header>
 
-        <!-- PHILOSOPHY SECTION -->
-        <div id="section-about" class="view-section hidden">
-            <section class="py-24 px-6 max-w-4xl mx-auto">
-                <h2 class="text-4xl font-black mb-8 text-[#4A6741]">Better Alternatives, No Compromise.</h2>
-                <div class="space-y-6 text-lg text-slate-600 leading-relaxed">
-                    <p>At NutriSip, we believe that "healthy" shouldn't be a chore and "traditional" shouldn't be boring. We started with Sattu, but our mission extends to every corner of the Indian pantry.</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-8 my-12">
-                        <div class="border-l-4 border-orange-400 pl-6 py-2">
-                            <h4 class="font-bold text-slate-900 mb-2 italic">The Problem</h4>
-                            <p class="text-sm">Modern snacks are filled with maltodextrin, refined sugar, and artificial flavors that harm long-term health.</p>
-                        </div>
-                        <div class="border-l-4 border-green-500 pl-6 py-2">
-                            <h4 class="font-bold text-slate-900 mb-2 italic">Our Solution</h4>
-                            <p class="text-sm">We use whole ingredients like Roasted Gram, Jaggery, and real Cocoa to create nutrient-dense foods kids love.</p>
-                        </div>
-                    </div>
-
-                    <p>Whether we're working with Sattu, Millets, or Seeds, our goal remains the same: <b>Transparent labels and Trusted nutrition.</b></p>
+    <!-- Why SipSil (Bold & Colorful) -->
+    <section class="py-16 px-6 bg-orange-50/50">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-xs font-black text-orange-600 tracking-[0.3em] uppercase mb-12 text-center">Why SipSil?</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-3xl border-2 border-orange-100 shadow-sm text-center">
+                    <div class="text-3xl mb-4 text-[#4A6741]"><i class="fa-solid fa-stopwatch"></i></div>
+                    <h4 class="font-bold text-lg mb-2">30 Sec Prep</h4>
                 </div>
-            </section>
+                <div class="bg-white p-8 rounded-3xl border-2 border-green-100 shadow-sm text-center">
+                    <div class="text-3xl mb-4 text-[#22C55E]"><i class="fa-solid fa-wheat-awn"></i></div>
+                    <h4 class="font-bold text-lg mb-2">High in Fiber</h4>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-2 border-blue-100 shadow-sm text-center">
+                    <div class="text-3xl mb-4 text-[#3B82F6]"><i class="fa-solid fa-battery-full"></i></div>
+                    <h4 class="font-bold text-lg mb-2">Keep Full for Long</h4>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-2 border-purple-100 shadow-sm text-center">
+                    <div class="text-3xl mb-4 text-[#A855F7]"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4 class="font-bold text-lg mb-2">Low Glycemic Index</h4>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- STANDARDS SECTION -->
-        <div id="section-standards" class="view-section hidden">
-            <section class="py-24 px-6 max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-slate-900">The NutriSip Standard</h2>
-                    <p class="text-slate-500 mt-2 text-lg">Our four pillars of trust for every product we launch.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-green-100 text-green-700 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-ban text-xl"></i>
-                        </div>
-                        <h4 class="font-bold mb-2 text-xl text-slate-900">Zero Junk</h4>
-                        <p class="text-sm text-slate-500">No preservatives, artificial colors, or "nature identical" flavors. If we can't find it in a home kitchen, it's not in our pack.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-orange-100 text-orange-700 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-cubes-stacked text-xl"></i>
-                        </div>
-                        <h4 class="font-bold mb-2 text-xl text-slate-900">No Refined Sugar</h4>
-                        <p class="text-sm text-slate-500">We exclusively use organic Jaggery or fruit-based sweeteners. No spikes, just sustained energy.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-children text-xl"></i>
-                        </div>
-                        <h4 class="font-bold mb-2 text-xl text-slate-900">Kid Approved</h4>
-                        <p class="text-sm text-slate-500">Every flavor is tested by kids to ensure they love the taste as much as parents love the nutrition.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-microscope text-xl"></i>
-                        </div>
-                        <h4 class="font-bold mb-2 text-xl text-slate-900">Lab Verified</h4>
-                        <p class="text-sm text-slate-500">Rigorous batch testing to ensure the protein and fiber content matches exactly what's on our label.</p>
-                    </div>
-                </div>
-            </section>
+    <!-- Product Grid -->
+    <section id="shop" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black mb-12 text-center">Our Sattu Range</h2>
+            <div class="grid md:grid-cols-4 gap-8" id="product-grid"></div>
         </div>
-    </main>
+    </section>
+
+    <!-- Family Bundle -->
+    <section class="py-12 px-6">
+        <div class="max-w-7xl mx-auto bg-[#1a1a1a] text-white p-12 rounded-[3rem] shadow-2xl overflow-hidden relative">
+            <div class="md:flex items-center justify-between relative z-10">
+                <div class="max-w-lg">
+                    <h2 class="text-4xl font-black mb-4">Family Variety Bundle</h2>
+                    <p class="text-slate-300 mb-8 leading-relaxed">Pack of 8 (2 packets of each flavor). The complete SipSil experience for your kitchen shelf.</p>
+                    <div class="flex items-baseline space-x-4 mb-8">
+                        <span class="text-5xl font-black text-orange-500">₹299</span>
+                        <span class="text-xl text-slate-500 line-through">MRP ₹480</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-orange-500 hover:text-white transition">Buy on Amazon</a>
+                        <a href="#" class="bg-white/10 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Buy on Flipkart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 max-w-3xl mx-auto text-center">
+        <h2 class="text-5xl font-black mb-12 italic text-[#4A6741]">Our Philosophy</h2>
+        <div class="space-y-8 text-lg text-slate-700 leading-relaxed font-medium">
+            <p>Sattu has been the backbone of Indian endurance for centuries. It was the fuel of farmers, warriors, and explorers.</p>
+            <p>We founded <b>NutriShip</b> to strip away the noise and return to basics. We believe that if our grandparents lived on it and thrived, it deserves a place in our modern life.</p>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-20 px-6 mt-12">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-2">
-                <div class="text-2xl font-black mb-6 uppercase tracking-tighter">NUTRISIP<span class="text-orange-500">.</span></div>
-                <p class="text-slate-400 max-w-sm mb-6 text-sm">Building a cleaner future for Indian snacking. From Sattu to ancient grains, we bring you the best of nature.</p>
-                <div class="flex space-x-4">
-                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition cursor-pointer">IG</div>
-                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition cursor-pointer">FB</div>
-                </div>
+    <footer class="bg-[#1a1a1a] text-slate-400 py-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 text-center md:text-left">
+            <div>
+                <div class="text-2xl font-black text-white mb-4">SIPSIL</div>
+                <p class="text-sm">Reimagining traditional Indian nutrition. Proudly by NutriShip.</p>
             </div>
             <div>
-                <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-slate-500">Company</h4>
-                <ul class="space-y-4 text-slate-400 text-sm font-medium">
-                    <li><button onclick="showSection('home')">Shop All</button></li>
-                    <li><button onclick="showSection('about')">Philosophy</button></li>
-                    <li><button onclick="showSection('standards')">Our Standards</button></li>
+                <h4 class="font-bold text-white mb-6">Contact Us</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><i class="fa-solid fa-phone mr-2"></i> 8877752020</li>
+                    <li><i class="fa-solid fa-envelope mr-2"></i> nutriship.official@gmail.com</li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-slate-500">Help</h4>
-                <ul class="space-y-4 text-slate-400 text-sm font-medium">
-                    <li class="hover:text-white cursor-pointer">Shipping</li>
-                    <li class="hover:text-white cursor-pointer">Contact</li>
-                    <li class="hover:text-white cursor-pointer">Privacy</li>
-                </ul>
+                <h4 class="font-bold text-white mb-6">Connect</h4>
+                <a href="https://www.instagram.com/nutriship.official?" target="_blank" class="text-orange-500 hover:underline">
+                    <i class="fa-brands fa-instagram mr-2"></i> @nutriship.official
+                </a>
             </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/10 text-center text-[10px] uppercase tracking-widest text-slate-600">
-            © 2024 NutriSip Foods. Better Food for a Better World.
         </div>
     </footer>
 
-    <!-- Cart Sidebar -->
-    <div id="cart-overlay" class="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm hidden" onclick="toggleCart(false)">
-        <div id="cart-drawer" class="cart-drawer closed absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col" onclick="event.stopPropagation()">
-            <div class="p-6 border-b flex items-center justify-between">
-                <h2 class="text-xl font-bold flex items-center">
-                    <i class="fa-solid fa-shopping-basket mr-3 text-[#4A6741]"></i> Your Basket
-                </h2>
-                <button onclick="toggleCart(false)" class="p-2 hover:bg-slate-100 rounded-full transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-6">
-                <!-- Cart items -->
-            </div>
-
-            <div id="cart-footer" class="p-6 border-t bg-slate-50 hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="text-slate-500 font-medium">Subtotal</span>
-                    <span class="text-2xl font-black text-slate-900">₹<span id="cart-total-value">0</span></span>
-                </div>
-                <button onclick="checkout()" class="w-full bg-[#4A6741] text-white py-4 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-[#3d5535] transition shadow-lg shadow-green-900/20">
-                    <span>Checkout Now</span>
-                    <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
     <script>
-        // Scalable Product Data Structure
         const products = [
-            { id: 'jaljeera', category: 'sattu', name: 'Zesty Jaljeera Sattu', tagline: 'The Digestive Refresher', price: 199, color: 'bg-[#E8F3E8]', text: 'text-green-800', desc: 'Roasted gram blended with cumin and black salt.' },
-            { id: 'peri-peri', category: 'sattu', name: 'Smoky Peri Peri Sattu', tagline: 'The Savory Kick', price: 199, color: 'bg-[#FFF2E6]', text: 'text-orange-800', desc: 'Spicy, savory protein boost for those on the move.' },
-            { id: 'cocoa-jaggery', category: 'sattu', name: 'Cocoa Jaggery Sattu', tagline: 'The Kids\' Chocolate Drink', price: 249, color: 'bg-[#F4ECE4]', text: 'text-amber-900', desc: 'Organic jaggery and pure cocoa for a guilt-free treat.' }
+            { name: 'Zesty Jaljeera', price: 159, mrp: 240 },
+            { name: 'Smoky Peri Peri', price: 159, mrp: 240 },
+            { name: 'Cocoa Jaggery', price: 159, mrp: 240 },
+            { name: 'Desi Salted', price: 159, mrp: 240 }
         ];
 
-        let cart = [];
-
-        // Dynamic Filtering
-        function filterProducts(cat) {
-            // Update UI pills
-            document.querySelectorAll('.category-pill').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            const filtered = cat === 'all' ? products : products.filter(p => p.category === cat);
-            renderProducts(filtered);
-        }
-
-        function renderProducts(items = products) {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = items.map(f => `
-                <div class="group relative animate-fade-in">
-                    <div class="${f.color} rounded-[2rem] p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full flex flex-col border border-slate-100">
-                        <div class="aspect-square mb-6 bg-white/60 rounded-2xl flex items-center justify-center overflow-hidden border border-white/40">
-                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">[ ${f.id} PACK ]</p>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">${f.category}</span>
-                        <h3 class="text-2xl font-bold mb-1 text-slate-900">${f.name}</h3>
-                        <p class="font-medium mb-4 ${f.text}">${f.tagline}</p>
-                        <p class="text-sm text-slate-600 mb-6 flex-grow">${f.desc}</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-xl font-black">₹${f.price}</span>
-                            <button onclick="addToCart('${f.id}', '${f.name}', ${f.price}, '${f.tagline}')" class="bg-white p-3 rounded-full shadow-sm hover:bg-slate-900 hover:text-white transition">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products.map(f => `
+            <div class="product-card bg-white p-6 rounded-3xl border border-orange-100 shadow-sm">
+                <div class="h-40 bg-orange-50 rounded-2xl mb-6 flex items-center justify-center text-orange-300 font-black uppercase text-xs tracking-widest">4 x 40g Pack</div>
+                <h3 class="font-black text-xl mb-4 text-slate-900">${f.name} Sattu</h3>
+                <div class="flex items-baseline space-x-2 mb-6">
+                    <span class="text-3xl font-black text-[#4A6741]">₹${f.price}</span>
+                    <span class="text-sm text-slate-400 line-through">MRP ₹${f.mrp}</span>
                 </div>
-            `).join('');
-        }
-
-        function showSection(viewId) {
-            document.querySelectorAll('.view-section').forEach(s => s.classList.add('hidden'));
-            document.getElementById('section-' + viewId).classList.remove('hidden');
-            
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                if(btn.dataset.view === viewId) btn.classList.add('text-orange-600');
-                else btn.classList.remove('text-orange-600');
-            });
-            window.scrollTo(0, 0);
-        }
-
-        function toggleCart(open) {
-            const overlay = document.getElementById('cart-overlay');
-            const drawer = document.getElementById('cart-drawer');
-            if(open) {
-                overlay.classList.remove('hidden');
-                setTimeout(() => {
-                    drawer.classList.remove('closed');
-                    drawer.classList.add('open');
-                }, 10);
-            } else {
-                drawer.classList.remove('open');
-                drawer.classList.add('closed');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-            }
-        }
-
-        function addToCart(id, name, price, tagline) {
-            const existing = cart.find(item => item.id === id);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ id, name, price, tagline, qty: 1 });
-            }
-            updateCartUI();
-            toggleCart(true);
-        }
-
-        function updateQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.qty += delta;
-                if (item.qty <= 0) {
-                    cart = cart.filter(i => i.id !== id);
-                }
-            }
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const itemsContainer = document.getElementById('cart-items');
-            const footer = document.getElementById('cart-footer');
-            const totalVal = document.getElementById('cart-total-value');
-            const badge = document.getElementById('cart-count-badge');
-            
-            const totalQty = cart.reduce((a, b) => a + b.qty, 0);
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-            if (cart.length === 0) {
-                itemsContainer.innerHTML = `
-                    <div class="text-center py-20">
-                        <p class="text-slate-400 mb-4 font-medium">Your basket is empty.</p>
-                        <button onclick="toggleCart(false)" class="text-orange-600 font-bold hover:underline">Continue Browsing</button>
-                    </div>
-                `;
-                footer.classList.add('hidden');
-                badge.classList.add('hidden');
-            } else {
-                itemsContainer.innerHTML = cart.map(item => `
-                    <div class="flex space-x-4">
-                        <div class="w-16 h-16 bg-slate-50 rounded-xl flex-shrink-0 flex items-center justify-center text-[8px] text-slate-300 font-bold border border-slate-100 italic">NutriSip</div>
-                        <div class="flex-grow">
-                            <div class="flex justify-between font-bold text-sm text-slate-900">
-                                <span>${item.name}</span>
-                                <span>₹${item.price * item.qty}</span>
-                            </div>
-                            <p class="text-xs text-slate-500 mb-2">${item.tagline}</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center border border-slate-100 rounded-lg overflow-hidden bg-white">
-                                    <button onclick="updateQty('${item.id}', -1)" class="px-2 py-1 hover:bg-slate-50 text-xs"><i class="fa-solid fa-minus"></i></button>
-                                    <span class="px-3 text-sm font-bold border-x border-slate-100">${item.qty}</span>
-                                    <button onclick="updateQty('${item.id}', 1)" class="px-2 py-1 hover:bg-slate-50 text-xs"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                                <button onclick="updateQty('${item.id}', -999)" class="text-xs text-red-500 font-medium hover:underline">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-                footer.classList.remove('hidden');
-                totalVal.innerText = totalAmount;
-                badge.innerText = totalQty;
-                badge.classList.remove('hidden');
-            }
-        }
-
-        function checkout() {
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            alert(`Proceeding to checkout for ₹${totalAmount}. \nAll NutriSip products are packed in plastic-free outer shipping boxes!`);
-        }
-
-        window.onload = () => {
-            renderProducts();
-            showSection('home');
-        };
+                <div class="space-y-3">
+                    <a href="#" class="block w-full text-center bg-orange-500 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-orange-600 transition">Amazon</a>
+                    <a href="#" class="block w-full text-center border-2 border-slate-900 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition">Flipkart</a>
+                </div>
+            </div>
+        `).join('');
     </script>
 </body>
 </html>
