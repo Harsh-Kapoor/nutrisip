@@ -130,16 +130,16 @@
 
     <script>
         const products = [
-            { name: 'Zesty Jaljeera', price: 159, mrp: 240 },
-            { name: 'Smoky Peri Peri', price: 159, mrp: 240 },
-            { name: 'Cocoa Jaggery', price: 159, mrp: 240 },
-            { name: 'Desi Salted', price: 159, mrp: 240 }
+            { name: 'Zesty Jaljeera', price: 159, mrp: 240, image: 'JALJEERA_2.jpg' },
+            { name: 'Smoky Peri Peri', price: 159, mrp: 240, image: 'PERIPERI_2.jpg' },
+            { name: 'Cocoa Jaggery', price: 159, mrp: 240, image: 'JAGGERY COCOA_2.jpg' },
+            { name: 'Desi Salted', price: 159, mrp: 240, image: 'SALTED_2.jpg' }
         ];
 
         const grid = document.getElementById('product-grid');
         grid.innerHTML = products.map(f => `
             <div class="product-card bg-white p-6 rounded-3xl border border-orange-100 shadow-sm">
-                <div class="h-40 bg-orange-50 rounded-2xl mb-6 flex items-center justify-center text-orange-300 font-black uppercase text-xs tracking-widest">4 x 40g Pack</div>
+                <img src="${f.image}" alt="${f.name}" class="h-40 w-full object-contain mb-6 rounded-2xl bg-orange-50 p-2" />
                 <h3 class="font-black text-xl mb-4 text-slate-900">${f.name} Sattu</h3>
                 <div class="flex items-baseline space-x-2 mb-6">
                     <span class="text-3xl font-black text-[#4A6741]">₹${f.price}</span>
