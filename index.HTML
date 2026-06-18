@@ -63,7 +63,7 @@
             <div class="grid md:grid-cols-4 gap-6">
                 <div class="bg-white p-8 rounded-3xl border-2 border-orange-100 shadow-sm text-center">
                     <div class="text-3xl mb-4 text-[#4A6741]"><i class="fa-solid fa-stopwatch"></i></div>
-                    <h4 class="font-bold text-lg mb-2">30 Sec Prep</h4>
+                    <h4 class="font-bold text-lg mb-2">20 Sec Prep</h4>
                 </div>
                 <div class="bg-white p-8 rounded-3xl border-2 border-green-100 shadow-sm text-center">
                     <div class="text-3xl mb-4 text-[#22C55E]"><i class="fa-solid fa-wheat-awn"></i></div>
@@ -97,8 +97,8 @@
                     <h2 class="text-4xl font-black mb-4">Family Variety Bundle</h2>
                     <p class="text-slate-300 mb-8 leading-relaxed">Pack of 8 (2 packets of each flavor). The complete SipSil experience for your kitchen shelf.</p>
                     <div class="flex items-baseline space-x-4 mb-8">
-                        <span class="text-5xl font-black text-orange-500">₹299</span>
-                        <span class="text-xl text-slate-500 line-through">MRP ₹480</span>
+                        <span class="text-5xl font-black text-orange-500">₹319</span>
+                        <span class="text-xl text-slate-500 line-through">MRP ₹400</span>
                     </div>
                     <div class="flex space-x-4">
                         <a href="#" class="bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-orange-500 hover:text-white transition">Buy on Amazon</a>
@@ -148,10 +148,14 @@
 
     <script>
         const products = [
-            { name: 'Zesty Jaljeera', price: 159, mrp: 240, image: 'JALJEERA.jpeg' },
-            { name: 'Smoky Peri Peri', price: 159, mrp: 240, image: 'PERIPERI.jpeg' },
-            { name: 'Cocoa Jaggery', price: 159, mrp: 240, image: 'JAGGERY COCOA.jpeg' },
-            { name: 'Desi Salted', price: 159, mrp: 240, image: 'SALTED.jpeg' }
+            { name: 'Zesty Jaljeera', price: 179, mrp: 200, image: 'JALJEERA.jpeg', amazonUrl: 'https://amzn.in/d/0gn299py', 
+                flipkartUrl: 'https://dl.flipkart.com/dl/agropro-chana-sattu-500/p/itmb2a7baad8ce6d' },
+            { name: 'Smoky Peri Peri', price: 179, mrp: 200, image: 'PERIPERI.jpeg', amazonUrl: 'https://amzn.in/d/0cci0sgg', 
+                flipkartUrl: 'https://dl.flipkart.com/dl/agropro-chana-sattu-500/p/itmb2a7baad8ce6d' },
+            { name: 'Cocoa Jaggery', price: 179, mrp: 200, image: 'JAGGERY COCOA.jpeg', amazonUrl: 'https://amzn.in/d/04z5fX3S', 
+                flipkartUrl: 'https://dl.flipkart.com/dl/agropro-chana-sattu-500/p/itmb2a7baad8ce6d' },
+            { name: 'Desi Salted', price: 179, mrp: 200, image: 'SALTED.jpeg', amazonUrl: 'https://amzn.in/d/055Mzu1E', 
+                flipkartUrl: 'https://dl.flipkart.com/dl/agropro-chana-sattu-500/p/itmb2a7baad8ce6d' }
         ];
 
         const grid = document.getElementById('product-grid');
@@ -164,8 +168,13 @@
                     <span class="text-sm text-slate-400 line-through">MRP ₹${f.mrp}</span>
                 </div>
                 <div class="space-y-3">
-                    <a href="#" class="block w-full text-center bg-orange-500 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-orange-600 transition">Amazon</a>
-                    <a href="#" class="block w-full text-center border-2 border-slate-900 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition">Flipkart</a>
+
+ <a href="${f.amazonUrl}" target="_blank" class="block w-full text-center bg-orange-500 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-orange-600 transition">Amazon</a>
+                    <a href="${f.flipkartUrl}" target="_blank" class="block w-full text-center border-2 border-slate-900 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition">Flipkart</a>
+
+
+                   <!-- <a href="#" class="block w-full text-center bg-orange-500 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-orange-600 transition">Amazon</a>
+                    <a href="#" class="block w-full text-center border-2 border-slate-900 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition">Flipkart</a> -->
                 </div>
             </div>
         `).join('');
